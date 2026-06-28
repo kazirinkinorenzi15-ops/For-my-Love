@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special for Salma ❤</title>
+    <!-- Font untuk tulisan tangan dan neon -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Sacramento&display=swap" rel="stylesheet">
+    <style>
+        /* --- RESET & LAYOUT BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #050505; 
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            perspective: 1000px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* --- BACKGROUND: NEON DETAK JANTUNG + SALMA --- */
+        .neon-grid-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around; 
+            align-items: center;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.25; 
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        .heartbeat-line {
+            width: 100%;
+            text-align: center;
+            white-space: nowrap;
+            font-family: 'Sacramento', cursive;
+            font-size: 34px;
+            color: #fff;
+            text-shadow: 
+                0 0 4px #fff,
+                0 0 10px #ff7597,
+                0 0 20px #ff7597,
+                0 0 30px #ff7597;
+            letter-spacing: 2px;
+        }
+
+        /* --- ANIMASI PARTIKEL HATI BERGUGURAN --- */
+        .heart-particle {
+            position: absolute;
+            color: #ff7597;
+            font-size: 14px;
+            pointer-events: none;
+            z-index: 2;
+            top: -20px;
+            animation: fall linear forwards;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* --- CONTAINER UTAMA (RESPONSIF PC & HP) --- */
+        .phone-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 420px; 
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 3;
+        }
+
+        /* --- POLAROID PHOTO GALLERY (INTERAKTIF) --- */
+        .photo-corner {
+            position: absolute;
+            width: 145px; 
+            height: 180px; 
+            background: #ffffff;
+            padding: 10px 10px 28px 10px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            z-index: 10; 
+            opacity: 0; 
+            pointer-events: auto; 
+            cursor: pointer;
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out, top 0.5s, bottom 0.5s, left 0.5s, right 0.5s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .photo-corner img {
+            width: 100%;
+            height: 135px; 
+            object-fit: cover;
+            border: 1px solid #eee;
+        }
+
+        .photo-corner:hover, .photo-corner:active {
+            opacity: 0.15 !important; 
+            transform: scale(0.9) !important;
+            z-index: 2; 
+        }
+
+        /* Posisi di HP */
+        .top-left { top: 5%; left: -4%; transform: rotate(-8deg) scale(0.95); }
+        .top-right { top: 5%; right: -4%; transform: rotate(7deg) scale(0.95); }
+        .bottom-left { bottom: 5%; left: -4%; transform: rotate(-6deg) scale(0.95); }
+        .bottom-right { bottom: 5%; right: -4%; transform: rotate(9deg) scale(0.95); }
+
+        /* Posisi di PC */
+        @media (min-width: 768px) {
+            .photo-corner {
+                width: 170px; 
+                height: 210px;
+            }
+            .photo-corner img {
+                height: 165px;
+            }
+            .top-left { top: 8%; left: -25%; }
+            .top-right { top: 8%; right: -25%; }
+            .bottom-left { bottom: 8%; left: -25%; }
+            .bottom-right { bottom: 8%; right: -25%; }
+        }
+
+        .fade-out { opacity: 0 !important; }
+        .fade-in { opacity: 0.95 !important; }
+
+        /* --- HALAMAN 1: SURAT REALISTIS --- */
+        .envelope-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.8s ease-in-out;
+            width: 100%;
+            z-index: 4; 
+        }
+
+        .envelope {
+            position: relative;
+            width: 290px;
+            height: 190px;
+            background: #ffffff;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+            cursor: pointer;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255, 117, 151, 0.3);
+        }
+
+        .envelope:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 145px solid transparent;
+            border-right: 145px solid transparent;
+            border-top: 100px solid #fcfcfc;
+            filter: drop-shadow(0 3px 3px rgba(0,0,0,0.1));
+            transform-origin: top;
+            transition: transform 0.6s ease-in-out;
+            z-index: 3;
+        }
+
+        .envelope::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 145px solid transparent;
+            border-right: 145px solid transparent;
+            border-bottom: 100px solid rgba(255, 240, 243, 0.95);
+            z-index: 2;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        .heart-seal {
+            position: absolute;
+            top: 85px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: #ff7597;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 14px;
+            border-radius: 50%;
+            z-index: 4;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: opacity 0.3s;
+        }
+
+        .letter-preview {
+            position: absolute;
+            top: 5px;
+            left: 15px;
+            right: 15px;
+            bottom: 5px;
+            background: #fff;
+            border-radius: 2px;
+            z-index: 1;
+            transition: transform 0.6s ease-in-out;
+            padding: 15px;
+            text-align: center;
+            font-size: 11px;
+            color: #ff7597;
+            border: 1px dashed #ffb3c6;
+        }
+
+        .envelope.open::before {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+
+        .envelope.open .letter-preview {
+            transform: translateY(-80px);
+        }
+
+        .envelope.open .heart-seal {
+            opacity: 0;
+        }
+
+        .hint {
+            color: #ffffff;
+            margin-top: 35px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            animation: blink 1.5s infinite;
+            background: rgba(255, 117, 151, 0.2);
+            border: 1px solid #ff7597;
+            padding: 6px 18px;
+            border-radius: 20px;
+            text-shadow: 0 0 5px #ff7597;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* --- HALAMAN 2: BUKU TULIS CREAM (SUDAH AKTIF SCROLL) --- */
+        .main-content {
+            position: absolute;
+            opacity: 0;
+            transform: scale(0.85) translateY(30px);
+            pointer-events: none;
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 100%;
+            padding: 10px;
+            z-index: 5; 
+            max-height: 85vh;       /* Batasan tinggi konten tengah */
+            overflow-y: auto;       /* Membuat halaman tengah bisa di-scroll ke bawah */
+        }
+
+        .notebook-paper {
+            background-color: #fdf6e2; 
+            background-image: linear-gradient(#e1d7bc 1px, transparent 1px);
+            background-size: 100% 28px;
+            line-height: 28px; 
+            border-radius: 12px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+            color: #3d3a35; 
+            position: relative;
+            border-left: 15px solid #ffccd5; 
+            padding: 35px 35px 35px 40px; 
+        }
+
+        .notebook-paper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 15px;
+            width: 1px;
+            height: 100%;
+            background: rgba(255, 117, 151, 0.5);
+        }
+
+        .notebook-paper::after {
+            content: '❤  ❤\nA l o v e u\n❤  ❤';
+            white-space: pre;
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            font-size: 12px;
+            color: rgba(255, 117, 151, 0.3);
+            text-align: right;
+            line-height: 1.5;
+        }
+
+        .top-hearts {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            color: rgba(255, 117, 151, 0.4);
+            font-size: 14px;
+            letter-spacing: 5px;
+        }
+
+        .notebook-paper h1 {
+            font-family: 'Caveat', cursive;
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #121212;
+            line-height: 1.2;
+            padding-bottom: 5px;
+        }
+
+        .notebook-paper p {
+            font-family: 'Caveat', cursive;
+            font-size: 22px; 
+            margin-bottom: 15px;
+            text-indent: 15px;
+            text-align: left;
+        }
+
+        @media (min-width: 768px) {
+            .notebook-paper {
+                padding: 40px 45px 40px 50px; 
+            }
+        }
+
+        .hidden {
+            opacity: 0;
+            transform: translateY(-100vh);
+            pointer-events: none;
+        }
+
+        .show-main {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- AUDIO PLAYER -->
+    <audio id="mySong" src="photograph.mp3.mp3" loop></audio>
+
+    <!-- BACKGROUND NEON DIAM -->
+    <div class="neon-grid-bg">
+        <div class="heartbeat-line">──♥──^v/\^v^v── Salma ──^v/\^v^v──♥── Salma ──^v/\^v^v──♥──</div>
+        <div class="heartbeat-line">──^v/\^v^v── Salma ──♥──^v/\^v^v── Salma ──^v/\^v^v──♥── Salma ──</div>
+        <div class="heartbeat-line">──♥──^v/\^v^v── Salma ──^v/\^v^v──♥── Salma ──^v/\^v^v──♥──</div>
+        <div class="heartbeat-line">──^v/\^v^v── Salma ──♥──^v/\^v^v── Salma ──^v/\^v^v──♥── Salma ──</div>
+        <div class="heartbeat-line">──♥──^v/\^v^v── Salma ──^v/\^v^v──♥── Salma ──^v/\^v^v──♥──</div>
+        <div class="heartbeat-line">──^v/\^v^v── Salma ──♥──^v/\^v^v── Salma ──^v/\^v^v──♥── Salma ──</div>
+    </div>
+
+    <!-- WRAPPER MOBILE -->
+    <div class="phone-wrapper">
+
+        <!-- 4 KORNER ELEMEN FOTO GALERI -->
+        <div class="photo-corner top-left" id="pTopLeft"><img></div>
+        <div class="photo-corner top-right" id="pTopRight"><img></div>
+        <div class="photo-corner bottom-left" id="pBottomLeft"><img></div>
+        <div class="photo-corner bottom-right" id="pBottomRight"><img></div>
+
+        <!-- HALAMAN 1: AMPLOP REALISTIS -->
+        <div class="envelope-container" id="envelopeContainer">
+            <div class="envelope" id="envelope">
+                <div class="heart-seal">❤</div>
+                <div class="letter-preview">
+                    <p>Tap stiker hatinya <br> untuk membuka... ✨</p>
+                </div>
+            </div>
+            <div class="hint">BUKA SURATNYA</div>
+        </div>
+
+        <!-- HALAMAN 2: BUKU TULIS CREAM -->
+        <div class="main-content" id="mainContent">
+            <div class="notebook-paper">
+                <div class="top-hearts">Bandung, 2026 ❤</div>
+                <h1>Dear Salma.. ❤</h1>
+                <p>Nggak kerasa ya Ma, udah 4 tahun kita jalanin hubungan ini bareng-bareng. Kalau diingat-ingat lagi, lucu ya... kita ketemu pas awal-awal masuk kuliah, berjuang bareng dari nol, sampai akhirnya sekarang kita berdua udah sama-sama lulus.</p>
+
+                <p>Perjalanan kita jelas nggak selalu mulus. Hubungan kita pernah pasang surut, dihantam ombak, penuh perbedaan pendapat, bahkan nggak jarang ada pertikaian di dalamnya. Tapi di sisi lain, terlalu banyak momen manis dan romantis yang udah kita ukir sama-sama.</p>
+
+                <p>Lewat surat kecil ini, aku cuma mau bilang: makasih banyak ya, Ma. Makasih udah nemenin aku di masa jatuh bangun. Makasih buat segala stok sabar kamu yang rasanya nggak pernah habis buat ngadepin aku. Makasih udah mau terus bertahan menerjang ombak bareng aku sampai detik ini.</p>
+
+                <p>Sekarang, kita mungkin lagi berjalan di jalur kita masing-masing. Kita milih jeda bukan karena menyerah, tapi karena kita sama-sama tahu: kita perlu ruang buat memperbaiki diri. Kita lagi mempersiapkan versi diri kita yang paling matang dan terbaik untuk satu sama lain.</p>
+
+                <p>Meski raga kita nggak sedekat dulu, hati kita nggak pernah padam. Kita masih selalu terkoneksi di frekuensi yang sama, memperjuangkan satu kata yang sama: "HALAL".</p>
+
+                <p>Sampai ketemu di ujung jalan nanti, dengan versi diri kita yang jauh lebih baik ya, Salma. I love you, then, now, and forever. ✨</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const envelope = document.getElementById('envelope');
+        const envelopeContainer = document.getElementById('envelopeContainer');
+        const mainContent = document.getElementById('mainContent');
+        const song = document.getElementById('mySong');
+
+        // ARRAY UTAMA DAFTAR 30 FOTO
+        const fotoList = [
+            'foto1.jpg', 'foto2.jpg', 'foto3.jpg', 'foto4.jpg', 'foto5.jpg',
+            'foto6.jpg', 'foto7.jpg', 'foto8.jpg', 'foto9.jpg', 'foto10.jpg',
+            'foto11.jpg', 'foto12.jpg', 'foto13.jpeg', 'foto14.jpeg', 'foto15.jpeg',
+            'foto16.jpeg', 'foto17.jpeg', 'foto18.jpeg', 'foto19.jpeg', 'foto20.jpeg',
+            'foto21.jpeg', 'foto22.jpeg', 'foto23.jpeg', 'foto24.jpeg', 'foto25.jpeg',
+            'foto26.jpeg', 'foto27.jpeg', 'foto28.jpeg', 'foto29.jpeg', 'foto30.jpeg'
+        ];
+
+        const corners = {
+            topLeft: document.getElementById('pTopLeft'),
+            topRight: document.getElementById('pTopRight'),
+            bottomLeft: document.getElementById('pBottomLeft'),
+            bottomRight: document.getElementById('pBottomRight')
+        };
+
+        function getRandomRotation() {
+            return (Math.random() * 16 - 8) + 'deg'; 
+        }
+
+        function getUniqueRandomPhotos() {
+            let shuffled = [...fotoList].sort(() => 0.5 - Math.random());
+            return [shuffled[0], shuffled[1], shuffled[2], shuffled[3]];
+        }
+
+        function updateCornerPhotos() {
+            const currentPhotos = getUniqueRandomPhotos();
+            let index = 0;
+
+            for (let key in corners) {
+                const cornerElement = corners[key];
+                const imgElement = cornerElement.querySelector('img');
+                const nextSrc = currentPhotos[index];
+
+                cornerElement.classList.add('fade-out');
+                cornerElement.classList.remove('fade-in');
+
+                setTimeout(((el, img, src) => {
+                    return () => {
+                        img.src = src;
+                        el.style.transform = `rotate(${getRandomRotation()}) scale(0.95)`;
+                        el.classList.remove('fade-out');
+                        el.classList.add('fade-in');
+                    };
+                })(cornerElement, imgElement, nextSrc), 800);
+
+                index++;
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            heart.innerHTML = '❤';
+            
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+            heart.style.fontSize = Math.random() * 10 + 12 + 'px';
+            
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        envelope.addEventListener('click', () => {
+            song.play().catch(error => console.log("Autoplay block:", error));
+            envelope.classList.add('open');
+            
+            setTimeout(() => {
+                envelopeContainer.classList.add('hidden');
+                mainContent.classList.add('show-main');
+
+                const initialPhotos = getUniqueRandomPhotos();
+                let idx = 0;
+                for (let key in corners) {
+                    corners[key].querySelector('img').src = initialPhotos[idx];
+                    corners[key].classList.add('fade-in'); 
+                    idx++;
+                }
+
+                setInterval(updateCornerPhotos, 5000);
+                setInterval(createHeart, 300);
+
+            }, 1100); 
+        });
+    </script>
+</body>
+</html>
